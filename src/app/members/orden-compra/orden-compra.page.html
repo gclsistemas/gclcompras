@@ -1,0 +1,41 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>
+            <img [src]="logoEmpresa"/>
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <h1 text-center>Orden Compra Nro {{datos.id}}</h1>
+    <ion-label [color]="colorEstado(datos)" *ngIf="datos.cancelado">{{estado(datos)}}</ion-label>
+    <ion-list>
+        <ion-list-header no-padding>
+            <ion-label>
+                <p>Fecha: {{datos.fecha | date: 'd/M/y'}}</p>
+                <p *ngIf="!datos.cancelado">{{estado(datos)}}</p>
+            </ion-label>
+        </ion-list-header>
+        <h3>Detalle</h3>
+        <ion-item lines="none" no-padding *ngFor="let item of datos.orden_venta_detalle">
+            <ion-label>
+                <p text-wrap>{{item.cantidad}}x COD({{item.id}}) {{item.producto}}</p>
+                <p>
+                    <span float-left>{{item.precio | currency}}</span>
+                    <span float-right>{{item.importe | currency}}</span>
+                </p>
+            </ion-label>
+        </ion-item>
+        <ion-item-divider></ion-item-divider>
+        <ion-item lines="none" no-padding>
+            <!--<ion-label>
+                <span float-left>Total</span>
+                <span float-right>{{total | currency}}</span>
+            </ion-label>-->
+            Total <span slot="end">{{total | currency}}</span>
+        </ion-item>
+    </ion-list>
+</ion-content>

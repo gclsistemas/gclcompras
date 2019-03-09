@@ -1,0 +1,39 @@
+// Ionic Variables and Theming. For more info, please see:
+// http://ionicframework.com/docs/theming/
+
+/** Ionic CSS Variables **/
+:root {
+  /** gold **/
+  --ion-color-custom-gold: #ffd700;
+  --ion-color-custom-gold-rgb: 255, 215, 0;
+  --ion-color-custom-gold-contrast: #000000;
+  --ion-color-custom-gold-contrast-rgb: 0, 0, 0;
+  --ion-color-custom-gold-shade: #e0bd00;
+  --ion-color-custom-gold-tint: #ffdb1a;
+
+  /** red **/
+  --ion-color-custom-red: #c1272d; //#761c19;
+  --ion-color-custom-red-rgb: 245, 61, 61;
+  --ion-color-custom-red-contrast: #ffffff;
+  --ion-color-custom-red-contrast-rgb: 255, 255, 255;
+  --ion-color-custom-red-shade: #c1272d;
+  --ion-color-custom-red-tint: #c1272d;
+}
+
+.ion-color-custom-gold {
+  --ion-color-base: var(--ion-color-custom-gold) !important;
+  --ion-color-base-rgb: var(--ion-color-custom-gold-rgb) !important;
+  --ion-color-contrast: var(--ion-color-custom-gold-contrast) !important;
+  --ion-color-contrast-rgb: var(--ion-color-custom-gold-contrast-rgb) !important;
+  --ion-color-shade: var(--ion-color-custom-gold-shade) !important;
+  --ion-color-tint: var(--ion-color-custom-gold-tint) !important;
+}
+
+.ion-color-custom-red {
+  --ion-color-base: var(--ion-color-custom-red) !important;
+  --ion-color-base-rgb: var(--ion-color-custom-red-rgb) !important;
+  --ion-color-contrast: var(--ion-color-custom-red-contrast) !important;
+  --ion-color-contrast-rgb: var(--ion-color-custom-red-contrast-rgb) !important;
+  --ion-color-shade: var(--ion-color-custom-red-shade) !important;
+  --ion-color-tint: var(--ion-color-custom-red-tint) !important;
+}

@@ -1,0 +1,83 @@
+<!--<ion-header>
+    <ion-toolbar>
+        <ion-title>
+            <img src="../../../assets/logo.png"/>
+        </ion-title>
+    </ion-toolbar>
+</ion-header>-->
+
+<ion-content color="custom-red" padding>
+    <!--<h1 text-center>Inicio de sesión</h1>
+    <form novalidate [formGroup]="myForm" (ngSubmit)="login()">
+        <ion-input type="email" formControlName="email" expand="block" placeholder="Email" required></ion-input>
+        <div class="validation-errors">
+            <ng-container *ngFor="let ctrl of validations.email | keyvalue">
+                <div class="error-message" *ngIf="f.email.hasError(ctrl.key) && (f.email.dirty || f.email.touched)">
+                    {{ctrl.value}}
+                </div>
+            </ng-container>
+        </div>
+
+        <ion-input type="password" formControlName="password" expand="block" placeholder="Contraseña" required></ion-input>
+        <div class="validation-errors">
+            <ng-container *ngFor="let ctrl of validations.password | keyvalue">
+                <div class="error-message" *ngIf="f.password.hasError(ctrl.key) && (f.password.dirty || f.password.touched)">
+                    {{ctrl.value}}
+                </div>
+            </ng-container>
+        </div>
+
+        <ion-button type="submit" expand="block" [disabled]="!myForm.valid">
+            <ion-icon slot="icon-only" name="log-in"></ion-icon> Iniciar sesión
+        </ion-button>
+    </form>-->
+    <ion-grid>
+        <ion-row justify-content-center>
+            <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+                <div color-light padding text-center>
+                    <!--<h4>Login Form</h4>-->
+                    <img src="../../../assets/logo.png"/>
+                </div>
+                <!--<div padding>
+                    <ion-item>
+                        <ion-input type="text" placeholder="Username"></ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-input type="password" placeholder="Password"></ion-input>
+                    </ion-item>
+                </div>
+                <div padding>
+                    <ion-button size="large" href="/touchid" expand="block">Login</ion-button>
+                </div>-->
+
+                <div padding>
+                    <form novalidate [formGroup]="myForm" (ngSubmit)="login()">
+                        <ion-input type="email" formControlName="email" expand="block" placeholder="Email" required></ion-input>
+                        <div class="validation-errors">
+                            <ng-container *ngFor="let ctrl of validations.email | keyvalue">
+                                <div class="error-message" *ngIf="f.email.hasError(ctrl.key) && (f.email.dirty || f.email.touched)">
+                                    {{ctrl.value}}
+                                </div>
+                            </ng-container>
+                        </div>
+
+                        <ion-input type="password" formControlName="password" expand="block" placeholder="Contraseña" required></ion-input>
+                        <div class="validation-errors">
+                            <ng-container *ngFor="let ctrl of validations.password | keyvalue">
+                                <div class="error-message" *ngIf="f.password.hasError(ctrl.key) && (f.password.dirty || f.password.touched)">
+                                    {{ctrl.value}}
+                                </div>
+                            </ng-container>
+                        </div>
+                        <div padding text-center>
+                            <ion-button type="submit" color="light" fill="outline" size="small" shape="round" [disabled]="!myForm.valid">
+                                <ion-icon slot="icon-only" name="log-in"></ion-icon>
+                            </ion-button>
+                        </div>
+                    </form>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

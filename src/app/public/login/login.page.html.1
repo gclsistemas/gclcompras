@@ -1,0 +1,23 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>
+            <img src="../../../assets/logo.png"/>
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <!--<ion-button (click)="login()" expand="block">Login</ion-button>
+    <ion-button expand="block" color="secondary" routerLink="/register" routerDirection="forward">Register</ion-button>-->
+    <h1 text-center>Inicio de sesión</h1>
+    <!--<form #values="ngForm" (ngSubmit)="login(values)">
+    <ion-input type="email" name="email" ngModel value="" placeholder="Email" expand="block" required="true"></ion-input>
+    <ion-input type="password" name="password" ngModel value="" expand="block" placeholder="Contraseña" required="true"></ion-input>-->
+    <form [formGroup]="myForm">
+        <ion-input type="email" name="email" formControlName="email" ngModel placeholder="Email" expand="block"></ion-input>
+        <ion-input type="password" name="password" formControlName="password" ngModel expand="block" placeholder="Contraseña"></ion-input>
+        <ion-button type="submit" expand="block">
+            <ion-icon slot="icon-only" name="log-in"></ion-icon> Login
+        </ion-button>
+    </form>
+</ion-content>

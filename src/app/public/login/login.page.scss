@@ -1,0 +1,48 @@
+$white-color: #ffffff;
+$full-height: 100%;
+
+ion-input {
+  border-bottom: 1px solid #86888f;
+  border-radius: 10px;
+}
+
+.validation-errors {
+  color: $white-color; //#761c19; //#d33939;
+  font-size: small;
+  font-style: italic;
+}
+
+[color-light] {
+  background-color: $white-color;
+}
+
+ion-grid {
+  //background: #dfdfdf;
+  background: transparent;
+  height: $full-height;
+  width: 100%;
+}
+
+ion-row {
+  height: $full-height;
+}
+
+ion-col {
+  //background: $white-color;
+  background: transparent;
+  border: 1px solid #488aff;
+}
+
+ion-button {
+  font-weight: 300;
+}
+
+@media (min-width: 240px) and (max-width: 768px) {
+  ion-grid {
+    //background: $white-color;
+    background: transparent;
+  }
+  ion-col {
+    border: none;
+  }
+}

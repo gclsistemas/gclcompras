@@ -1,0 +1,102 @@
+ion-badge {
+  color: #fff;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  border-radius: 100%;
+}
+
+/*ion-slide {
+  //width: unset !important;
+  width: 100% !important;
+  height: 100% !important;
+  //text-align: center !important;
+}*/
+
+ion-slides {
+  width: 100% !important;
+  height: 100% !important;
+  //padding: 0 !important;
+  ion-slide {
+    width: 100% !important;
+    height: 100% !important;
+    //padding: 0 !important;
+    ion-card {
+      width: 100% !important;
+      height: 100% !important;
+      margin: 0 0 0 0;
+      ion-card-title {
+        //background-color: darkred;
+        color: #ffffff;
+      }
+      //ion-card-content {
+      //
+      //}
+      //ion-button {
+      //  //margin: auto !important;
+      //  margin-left: auto !important;
+      //  margin-right: auto !important;
+      //  position: absolute !important;
+      //  //top: 0;
+      //  //left: 0;
+      //  bottom: 10px !important;
+      //  //right: 0;
+      //}
+      div {
+        padding: 16px 16px 16px 16px;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+      }
+    }
+  }
+}
+
+/*.md,
+.ios,
+.wp {
+  .swiper-slide .swiper-slide-active {
+    width: 100% !important;
+  }
+}*/
+
+/*.category-block {
+  margin-bottom: 4px;
+}*/
+
+/*
+.category-banner {
+  border-left: 8px solid var(--ion-color-secondary);
+  background: var(--ion-color-light);
+  height: 40px;
+  padding: 10px;
+  font-weight: 500;
+}*/
+
+p {
+  color: #ffffff;
+  //overflow-y: hidden;
+  //white-space: pre-wrap;
+}
+
+[presentacion] {
+  color: #ffffff;
+  margin-top: 5px;
+  padding: 5px;
+}
+
+[precio] {
+  //border: 1px solid darkgreen;
+  //border-radius: 5px;
+  color: #ffffff;
+  margin-top: 5px;
+  padding: 5px;
+}
+
+/*.precio-oferta {
+  background-color: darkgreen;
+  border-radius: 5px;
+  color: #ffffff;
+  margin-top: 5px;
+  padding: 5px;
+}*/

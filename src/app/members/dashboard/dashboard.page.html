@@ -1,0 +1,53 @@
+<ion-header>
+    <ion-toolbar>
+        <!--<ion-buttons slot="start">
+          <ion-button (click)="logout()">
+            <ion-icon slot="icon-only" name="log-out"></ion-icon>
+          </ion-button>
+        </ion-buttons>-->
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>
+            <img [src]="logoEmpresa"/>
+            <ion-searchbar type="search" animated (ionChange)="onSearchChange($event)"></ion-searchbar>
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-list no-padding>
+        <!--<ion-item-sliding *ngFor="let item of misDatos; let idx = index">
+            <ion-item [color]="colorEstado(item)">
+                <ion-label text-wrap>
+                    <p>
+                        <span float-left>Nro: {{item.id}}</span>
+                        <span float-right>Fecha: {{item.fecha | date: 'd/M/y'}}</span>
+                    </p>
+                    <p>{{estado(item)}}</p>
+                    <p>
+                        <span float-left>{{cantidadProductos(item.orden_venta_detalle)}} productos</span>
+                        <span float-right>{{importeTotal(item.orden_venta_detalle) | currency}}</span>
+                    </p>
+                </ion-label>
+            </ion-item>
+            <ion-item-options side="end">
+                <ion-item-option (click)="goToOrdenCompra(item)">Ver</ion-item-option>
+                <ion-item-option color="danger">PDF</ion-item-option>
+            </ion-item-options>
+        </ion-item-sliding>-->
+        <ion-item [color]="colorEstado(item)" *ngFor="let item of misDatos; let idx = index" (click)="goToOrdenCompra(item)" no-padding>
+            <ion-label padding text-wrap>
+                <p>
+                    <span float-left>Nro: {{item.id}}</span>
+                    <span float-right>Fecha: {{item.fecha | date: 'd/M/y'}}</span>
+                </p>
+                <p>{{estado(item)}}</p>
+                <p>
+                    <span float-left>{{cantidadProductos(item.orden_venta_detalle)}} productos</span>
+                    <span float-right>{{importeTotal(item.orden_venta_detalle) | currency}}</span>
+                </p>
+            </ion-label>
+        </ion-item>
+    </ion-list>
+</ion-content>
