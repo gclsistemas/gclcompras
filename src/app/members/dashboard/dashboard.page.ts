@@ -13,9 +13,9 @@ import {Router} from '@angular/router';
 export class DashboardPage implements OnInit {
 
     cliente: any = null;
-    datos: any = [];
+    compras: any = [];
     logoEmpresa = '../../../assets/logo.png';
-    misDatos: any = [];
+    misCompras: any = [];
 
     constructor(private authService: AuthenticationService, private datePipe: DatePipe, private loadingController: LoadingController, private router: Router, private toast: ToastController,
                 private ws: WebService) {
@@ -26,13 +26,13 @@ export class DashboardPage implements OnInit {
             message: 'Obteniendo mis ordenes de compras...'
         });
         await loading.present();
-        this.ws.sendGet('download/pedidos/cliente/' + this.cliente.id)
+        this.ws.sendGet('/download/pedidos/cliente/' + this.cliente.id)
             .then(
                 (res: any) => {
                     loading.dismiss();
-                    this.datos = res.pedidos;
-                    this.misDatos = this.datos;
-                    console.log(this.misDatos);
+                    this.compras = res.mis_compras;
+                    this.misCompras = this.compras;
+                    console.log(this.misCompras);
                 },
                 error => {
                     loading.dismiss();
@@ -49,48 +49,58 @@ export class DashboardPage implements OnInit {
             );
     }
 
-    cantidadProductos(datos: any[]) {
+    cantidadProductos(compras: any[]) {
         let cantProd = 0;
-        for (const dato of datos) {
+        for (const dato of compras) {
             cantProd += dato.cantidad;
         }
         return cantProd;
     }
 
-    colorEstado(item) {
-        if (item.cancelado) {
+    // colorEstado(item) {
+    //     if (item.cancelado) {
+    //         return 'danger';
+    //     } else if (item.enviado) {
+    //         return 'success';
+    //     } else if (item.embalada) {
+    //         return 'medium';
+    //     } else if (item.pagado) {
+    //         return 'primary';
+    //     }
+    // }
+    colorEstado(estado_id) {
+        estado_id = Number(estado_id) || 0;
+        if (estado_id === 2) { // Cancelada
             return 'danger';
-        } else if (item.enviado) {
+        } else if (estado_id === 1) { // Facturada
             return 'success';
-        } else if (item.embalada) {
-            return 'medium';
-        } else if (item.pagado) {
-            return 'primary';
+        } else if (estado_id === 0) { // Sin facturar
+            return 'dark-light';
         }
     }
 
-    estado(item) {
-        if (item.cancelado) {
-            return 'Cancelada el ' + this.datePipe.transform(item.fechaCancelado, 'dd/MM/yyyy');
-        } else if (item.enviado) {
-            return 'Enviada el ' + this.datePipe.transform(item.fechaEnviado, 'dd/MM/yyyy');
-        } else if (item.embalada) {
-            return 'Embalada el ' + this.datePipe.transform(item.fechaEmbalada, 'dd/MM/yyyy');
-        } else if (item.pagado) {
-            return 'Pagada el ' + this.datePipe.transform(item.fechaPago, 'dd/MM/yyyy');
-        }
-        return 'Sin procesar';
-    }
+    // estado(item) {
+    //     if (item.cancelado) {
+    //         return 'Cancelada el ' + this.datePipe.transform(item.fechaCancelado, 'dd/MM/yyyy');
+    //     } else if (item.enviado) {
+    //         return 'Enviada el ' + this.datePipe.transform(item.fechaEnviado, 'dd/MM/yyyy');
+    //     } else if (item.embalada) {
+    //         return 'Embalada el ' + this.datePipe.transform(item.fechaEmbalada, 'dd/MM/yyyy');
+    //     } else if (item.pagado) {
+    //         return 'Pagada el ' + this.datePipe.transform(item.fechaPago, 'dd/MM/yyyy');
+    //     }
+    //     return 'Sin procesar';
+    // }
 
     goToOrdenCompra(item) {
         console.log('DashboardPage - goToOrdenCompra');
         this.router.navigate(['members', 'orden-compra', {logoEmpresa: this.logoEmpresa, orden: JSON.stringify(item)}]);
     }
 
-    importeTotal(datos: any[]) {
+    importeTotal(compras: any[]) {
         let total = 0;
-        for (const dato of datos) {
-            total += (dato.importe);
+        for (const dato of compras) {
+            total += (dato.cantidad * dato.precio);
         }
         return total;
     }
@@ -118,9 +128,9 @@ export class DashboardPage implements OnInit {
         const val = event.target.value;
         // console.log(val);
         if (val === '') {
-            this.misDatos = this.datos;
+            this.misCompras = this.compras;
         } else {
-            this.misDatos = this.datos.filter((item: any) => {
+            this.misCompras = this.compras.filter((item: any) => {
                 // return (item.fecha.indexOf(val) > -1 || item.id === Number(val));
                 if (isNaN(val)) {
                     return this.datePipe.transform(item.fecha, 'dd/MM/yyyy').indexOf(val) > -1;

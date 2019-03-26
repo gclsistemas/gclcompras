@@ -69,7 +69,7 @@ export class AuthenticationService {
                     console.log(toast);
                 });
             });*/
-        return this.ws.sendGet('check/login', obj)
+        return this.ws.sendGet('/check/login', obj)
             .then(
             (res: any) => {
                 loading.dismiss();

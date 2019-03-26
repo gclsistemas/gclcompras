@@ -16,9 +16,9 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content color="custom-red" no-padding>
+<ion-content no-padding>
     <ion-slides [options]="sliderConfig">
-        <ion-slide *ngFor="let item of datos">
+        <ion-slide *ngFor="let item of misDatos">
             <ion-card>
                 <!--<ion-card-header>
                     <ion-card-title text-wrap>
@@ -28,27 +28,20 @@
                 <ion-card-content>
                     <img [src]="getFoto(item.id)" [alt]="'Foto producto ' + item.id">
                     <ion-label>
-                        {{ item.nombre }}
-                        <br/>{{ item.descripcion }}
-                        <span float-left presentacion>{{item.presentacion}}</span>
-                        <span float-right precio>{{ item.precio | currency }}</span>
+                        <span titulo text-center text-wrap>{{ item.nombre }}</span>
+                        <p text-left text-wrap>{{ item.descripcion }}</p>
+                        <span presentacion>{{item.presentacion}}</span>
+                        <span precio>{{ item.precio | currency }}</span>
                     </ion-label>
-                    <!--<p>
-                        {{ item.nombre }}
-                        <br/>{{ item.procedencia }}
-                        <br/>{{ item.descripcion }}
-                    </p>
-                    <span float-left presentacion>{{item.presentacion}}</span>
-                    <span float-right precio>{{ item.precio | currency }}</span>-->
+                    <ion-item lines="none" no-padding>
+                        <ion-button slot="start" color="dark" fill="outline" size="small" shape="round" (click)="delItemFromMyCart(item.id)">
+                            <ion-icon slot="icon-only" name="trash"></ion-icon>
+                        </ion-button>
+                        <ion-button slot="end" color="dark" fill="outline" size="small" shape="round" (click)="addItemToMyCart(item)">
+                            <ion-icon slot="icon-only" name="cart"></ion-icon>
+                        </ion-button>
+                    </ion-item>
                 </ion-card-content>
-                <div>
-                    <ion-button color="light" fill="outline" size="small" shape="round" (click)="addItemToMyCart(item)">
-                        <ion-icon slot="icon-only" name="cart"></ion-icon>
-                    </ion-button>
-                    <ion-button color="light" fill="outline" size="small" shape="round" (click)="delItemFromMyCart(item.id)">
-                        <ion-icon slot="icon-only" name="trash"></ion-icon>
-                    </ion-button>
-                </div>
             </ion-card>
         </ion-slide>
     </ion-slides>

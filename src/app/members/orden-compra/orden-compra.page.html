@@ -11,30 +11,81 @@
 
 <ion-content padding>
     <h1 text-center>Orden Compra Nro {{datos.id}}</h1>
-    <ion-label [color]="colorEstado(datos)" *ngIf="datos.cancelado">{{estado(datos)}}</ion-label>
+    <!-- Se muestra solo cuando el estado = 2 = cancelada -->
+    <ion-label [color]="colorEstado(datos.estado_id)" *ngIf="datos.estado_id === 2">{{datos.estado}}</ion-label>
+    <!--<ion-grid>
+        <ion-row>
+            <ion-col>
+                Fecha
+            </ion-col>
+            <ion-col>
+                Factura
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                {{datos.fecha | date: 'd/MM/y'}}
+            </ion-col>
+            <ion-col>
+                {{datos.factura}}
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                Facturación
+            </ion-col>
+            <ion-col>
+                Enviada
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                {{datos.estado}}
+            </ion-col>
+            <ion-col>
+                {{datos.fechaEnvio | date: 'd/MM/y'}}
+            </ion-col>
+        </ion-row>
+    </ion-grid>-->
     <ion-list>
-        <ion-list-header no-padding>
+        <!--<ion-list-header no-padding>
             <ion-label>
-                <p>Fecha: {{datos.fecha | date: 'd/M/y'}}</p>
-                <p *ngIf="!datos.cancelado">{{estado(datos)}}</p>
+                <p>Fecha: {{datos.fecha | date: 'd/MM/y'}}</p>
+                <p *ngIf="datos.factura">Factura: {{datos.factura}}</p>
+                &lt;!&ndash; Se muestra solo cuando el estado != 2 != cancelada &ndash;&gt;
+                <p *ngIf="datos.estado_id !== 2">Facturación: {{datos.estado}}</p>
+                <p *ngIf="datos.fechaEnvio">Enviada: {{datos.fechaEnvio | date: 'd/MM/y'}}</p>
             </ion-label>
-        </ion-list-header>
-        <h3>Detalle</h3>
-        <ion-item lines="none" no-padding *ngFor="let item of datos.orden_venta_detalle">
+        </ion-list-header>-->
+        <ion-item lines="none" no-padding>
             <ion-label>
-                <p text-wrap>{{item.cantidad}}x COD({{item.id}}) {{item.producto}}</p>
+                <p>
+                    <span float-left>
+                        Fecha<br/>
+                        {{datos.fecha | date: 'd/MM/y'}}
+                    </span>
+                    <span *ngIf="datos.factura" float-right>
+                        Factura<br/>
+                        {{datos.factura}}
+                    </span>
+                </p>
+                <div></div>
+                <p *ngIf="datos.estado_id !== 2">Facturación: {{datos.estado}}</p>
+                <p *ngIf="datos.fechaEnvio"><ion-icon name="bus"></ion-icon> {{datos.fechaEnvio | date: 'd/MM/y'}}</p>
+            </ion-label>
+        </ion-item>
+        <h3>Detalle</h3>
+        <ion-item lines="none" no-padding *ngFor="let item of datos.detalle_compra">
+            <ion-label>
+                <p text-wrap>{{item.cantidad}} x {{item.descripcion}}</p>
                 <p>
                     <span float-left>{{item.precio | currency}}</span>
-                    <span float-right>{{item.importe | currency}}</span>
+                    <span float-right>{{(item.cantidad * item.precio) | currency}}</span>
                 </p>
             </ion-label>
         </ion-item>
         <ion-item-divider></ion-item-divider>
         <ion-item lines="none" no-padding>
-            <!--<ion-label>
-                <span float-left>Total</span>
-                <span float-right>{{total | currency}}</span>
-            </ion-label>-->
             Total <span slot="end">{{total | currency}}</span>
         </ion-item>
     </ion-list>

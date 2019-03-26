@@ -17,40 +17,39 @@ export class OrdenCompraPage implements OnInit {
     }
 
     private totales() {
-        for (const item of this.datos.orden_venta_detalle) {
-            this.total += item.importe;
+        for (const item of this.datos.detalle_compra) {
+            this.total += (item.cantidad * item.precio);
         }
     }
 
-    colorEstado(item) {
-        if (item.cancelado) {
+    colorEstado(estado_id) {
+        if (estado_id === 2) {
             return 'danger';
-        } else if (item.enviado) {
+        } else if (estado_id === 1) {
             return 'success';
-        } else if (item.embalada) {
+        } else if (estado_id === 0) {
             return 'dark-light';
-        } else if (item.pagado) {
-            return 'primary';
         }
     }
 
-    estado(item) {
-        if (item.cancelado) {
-            return 'Cancelada el ' + this.datePipe.transform(item.fechaCancelado, 'dd/MM/yyyy');
-        } else if (item.enviado) {
-            return 'Enviada el ' + this.datePipe.transform(item.fechaEnviado, 'dd/MM/yyyy');
-        } else if (item.embalada) {
-            return 'Embalada el ' + this.datePipe.transform(item.fechaEmbalada, 'dd/MM/yyyy');
-        } else if (item.pagado) {
-            return 'Pagada el ' + this.datePipe.transform(item.fechaPago, 'dd/MM/yyyy');
-        }
-        return 'Sin procesar';
-    }
+    // estado(item) {
+    //     if (item.cancelado) {
+    //         return 'Cancelada el ' + this.datePipe.transform(item.fechaCancelado, 'dd/MM/yyyy');
+    //     } else if (item.enviado) {
+    //         return 'Enviada el ' + this.datePipe.transform(item.fechaEnviado, 'dd/MM/yyyy');
+    //     } else if (item.embalada) {
+    //         return 'Embalada el ' + this.datePipe.transform(item.fechaEmbalada, 'dd/MM/yyyy');
+    //     } else if (item.pagado) {
+    //         return 'Pagada el ' + this.datePipe.transform(item.fechaPago, 'dd/MM/yyyy');
+    //     }
+    //     return 'Sin procesar';
+    // }
 
     ngOnInit() {
         console.log('OrdenCompraPage - ngOnInit');
         this.route.params.subscribe(params => {
             this.datos = JSON.parse(params['orden']);
+            console.log(this.datos);
             this.logoEmpresa = params['logoEmpresa'];
             this.totales();
         });

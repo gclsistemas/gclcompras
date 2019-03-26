@@ -1,5 +1,5 @@
 ion-badge {
-  color: #fff;
+  //color: #fff;
   position: absolute;
   top: 0px;
   right: 0px;
@@ -15,20 +15,21 @@ ion-badge {
 
 ion-slides {
   width: 100% !important;
-  height: 100% !important;
+  //height: 100% !important;
   //padding: 0 !important;
   ion-slide {
     width: 100% !important;
-    height: 100% !important;
+    //height: 100% !important;
     //padding: 0 !important;
     ion-card {
+      box-shadow: none !important;
       width: 100% !important;
-      height: 100% !important;
+      //height: 100% !important;
       margin: 0 0 0 0;
-      ion-card-title {
-        //background-color: darkred;
-        color: #ffffff;
-      }
+      //ion-card-title {
+      //  //background-color: darkred;
+      //  color: #ffffff;
+      //}
       //ion-card-content {
       //
       //}
@@ -73,22 +74,30 @@ ion-slides {
   font-weight: 500;
 }*/
 
-p {
-  color: #ffffff;
-  //overflow-y: hidden;
-  //white-space: pre-wrap;
+ion-label, ion-label > p {
+  //color: #ffffff;
+  ////overflow-y: hidden;
+  ////white-space: pre-wrap;
 }
 
+/*.clearfix:after {
+  clear: both;
+  display: block;
+  content: "";
+}*/
+
 [presentacion] {
-  color: #ffffff;
+  //color: #ffffff;
+  float: left;
   margin-top: 5px;
   padding: 5px;
 }
 
 [precio] {
-  //border: 1px solid darkgreen;
-  //border-radius: 5px;
-  color: #ffffff;
+  ////border: 1px solid darkgreen;
+  ////border-radius: 5px;
+  //color: #ffffff;
+  float: right;
   margin-top: 5px;
   padding: 5px;
 }
@@ -100,3 +109,9 @@ p {
   margin-top: 5px;
   padding: 5px;
 }*/
+
+[titulo] {
+  //color: #ffffff;
+  font-weight: bold;
+  text-transform: uppercase;
+}

@@ -71,12 +71,13 @@ export class MyCartPage implements OnInit {
         });
         await loading.present();
         const objCart = {
-            fecha: this.datePipe.transform(new Date(), 'yyyy-MM-dd'),
+            fecha: this.datePipe.transform(new Date(), 'yyyy-MM-dd H:mm:ss'),
             cliente_id: this.cliente.id,
             empresa_id: this.cliente.empresa_id,
             venta_detalles: this.selectedItems
         };
-        this.ws.sendPost('pedido/create', objCart)
+        // this.ws.sendPost('/pedido/create', objCart)
+        this.ws.sendPost('', objCart)
             .then((res: any) => {
                 loading.dismiss();
                 console.log('MyCartPage - orderMyCart', res);
@@ -89,7 +90,7 @@ export class MyCartPage implements OnInit {
                     console.log(toast);
                 });
                 this.cartService.delCart();
-                this.router.navigate(['members', 'orden-compra', {logoEmpresa: this.logoEmpresa, orden: JSON.stringify(res.pedido)}]);
+                this.router.navigate(['members', 'orden-compra', {logoEmpresa: this.logoEmpresa, orden: JSON.stringify(res.mi_compra)}]);
             }, error => {
                 loading.dismiss();
                 console.log(error);

@@ -36,16 +36,17 @@
                 <ion-item-option color="danger">PDF</ion-item-option>
             </ion-item-options>
         </ion-item-sliding>-->
-        <ion-item [color]="colorEstado(item)" *ngFor="let item of misDatos; let idx = index" (click)="goToOrdenCompra(item)" no-padding>
+        <ion-item [color]="colorEstado(item.estado_id)" *ngFor="let item of misCompras; let idx = index" (click)="goToOrdenCompra(item)" no-padding>
             <ion-label padding text-wrap>
                 <p>
                     <span float-left>Nro: {{item.id}}</span>
-                    <span float-right>Fecha: {{item.fecha | date: 'd/M/y'}}</span>
+                    <span float-right>Fecha: {{item.fecha | date: 'd/MM/y'}}</span>
                 </p>
-                <p>{{estado(item)}}</p>
+                <p>Factura: {{item.estado_id === '1' ? item.factura : item.estado}}</p>
+                <p *ngIf="item.fechaEnvio"><ion-icon name="bus"></ion-icon> {{item.fechaEnvio ? (item.fechaEnvio | date:  'd/MM/y') : ''}}</p>
                 <p>
-                    <span float-left>{{cantidadProductos(item.orden_venta_detalle)}} productos</span>
-                    <span float-right>{{importeTotal(item.orden_venta_detalle) | currency}}</span>
+                    <span float-left>{{cantidadProductos(item.detalle_compra)}} productos</span>
+                    <span float-right>{{importeTotal(item.detalle_compra) | currency}}</span>
                 </p>
             </ion-label>
         </ion-item>

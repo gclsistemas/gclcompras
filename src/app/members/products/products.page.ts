@@ -28,7 +28,17 @@ export class ProductsPage implements OnInit {
     };
 
     constructor(private authService: AuthenticationService, private cartService: CartService, private loadingController: LoadingController, private router: Router,
-                private toast: ToastController, private ws: WebService) {
+                private toastController: ToastController, private ws: WebService) {
+    }
+
+    private async toastPresent(msg) {
+        const toast = await this.toastController.create({
+            message: msg,
+            position: 'bottom',
+            duration: 3000,
+            showCloseButton: false
+        });
+        return await toast.present();
     }
 
     private async getProducts() {
@@ -36,36 +46,23 @@ export class ProductsPage implements OnInit {
             message: 'Obteniendo productos...'
         });
         await loading.present();
-        this.ws.sendGet('download/productos/' + this.cliente.empresa_id)
+
+        this.ws.sendGet('/download/productos/' + this.cliente.empresa_id)
             .then(
                 (res: any) => {
                     loading.dismiss();
-                    console.log(res);
+                    // console.log(res);
                     this.datos = res.productos;
                     this.misDatos = this.datos;
                     console.log(this.misDatos);
                     if (this.datos.length < 1) {
-                        this.toast.create({
-                            message: 'La empresa "' + this.cliente.empresa + '" no tiene productos a la venta.',
-                            position: 'bottom',
-                            duration: 3000,
-                            showCloseButton: false
-                        }).then(toast => {
-                            console.log(toast);
-                        });
+                        this.toastPresent('La empresa "' + this.cliente.empresa + '" no tiene productos a la venta.');
                     }
                 },
                 error => {
-                    loading.dismiss();
                     console.log(error);
-                    this.toast.create({
-                        message: error,
-                        position: 'bottom',
-                        duration: 3000,
-                        showCloseButton: false
-                    }).then(toast => {
-                        console.log(toast);
-                    });
+                    loading.dismiss();
+                    this.toastPresent(error);
                 }
             );
     }
@@ -95,7 +92,6 @@ export class ProductsPage implements OnInit {
         console.log('ProductsPage - ngOnInit');
         this.authService.token.then(
             (user: any) => {
-                // console.log(data);
                 this.cliente = user;
                 this.logoEmpresa = this.cliente.logoEmpresa;
                 this.getProducts();
@@ -117,7 +113,7 @@ export class ProductsPage implements OnInit {
             this.misDatos = this.datos;
         } else {
             this.misDatos = this.datos.filter((item: any) => {
-                return (item.producto.toLowerCase().indexOf(val.toLowerCase()) > -1 || item.articulo_id === Number(val));
+                return (item.nombre.toLowerCase().indexOf(val.toLowerCase()) > -1 || item.id === Number(val));
                 // if (isNaN(val)) {
                 //     return item.producto.toLowerCase().indexOf(val.toLowerCase()) > -1;
                 // } else {
