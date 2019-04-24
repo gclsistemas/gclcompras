@@ -12,6 +12,7 @@ const TOKEN_KEY = 'auth-token';
 export class AuthenticationService {
 
     authenticationState = new BehaviorSubject(false);
+    protected CTRL_LOGIN = '/check/login';
 
     constructor(private ws: WebService, private loadingController: LoadingController, private plt: Platform, private toast: ToastController, private storage: Storage) {
         this.plt.ready().then(() => {
@@ -69,7 +70,7 @@ export class AuthenticationService {
                     console.log(toast);
                 });
             });*/
-        return this.ws.sendGet('/check/login', obj)
+        return this.ws.sendGet(this.CTRL_LOGIN, obj)
             .then(
             (res: any) => {
                 loading.dismiss();

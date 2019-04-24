@@ -35,7 +35,7 @@
         </ion-item>
     </ion-list>
     <div text-center no-padding>
-        <ion-button color="dark" fill="outline" size="small" shape="round" (click)="orderMyCart()">
+        <ion-button color="dark" fill="outline" size="small" shape="round" (click)="orderMyCart()" [disabled]="selectedItems.length<1">
             <ion-icon slot="icon-only" name="checkmark-circle-outline"></ion-icon>
             Comprar
         </ion-button>

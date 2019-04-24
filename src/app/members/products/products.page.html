@@ -29,7 +29,7 @@
                     <img [src]="getFoto(item.id)" [alt]="'Foto producto ' + item.id">
                     <ion-label>
                         <span titulo text-center text-wrap>{{ item.nombre }}</span>
-                        <p text-left text-wrap>{{ item.descripcion }}</p>
+                        <p text-left text-wrap [innerHTML]="item.descripcion"></p>
                         <span presentacion>{{item.presentacion}}</span>
                         <span precio>{{ item.precio | currency }}</span>
                     </ion-label>

@@ -23,11 +23,11 @@ export class OrdenCompraPage implements OnInit {
     }
 
     colorEstado(estado_id) {
-        if (estado_id === 2) {
+        if (estado_id === 2) { // Cancelada
             return 'danger';
-        } else if (estado_id === 1) {
+        } else if (estado_id === 1 || estado_id === 3) { // Facturada ó Pagada
             return 'success';
-        } else if (estado_id === 0) {
+        } else if (estado_id === 0) { // Sin facturar
             return 'dark-light';
         }
     }

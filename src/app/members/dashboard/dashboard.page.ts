@@ -12,6 +12,7 @@ import {Router} from '@angular/router';
 })
 export class DashboardPage implements OnInit {
 
+    protected CTRL_DOWNLOAD = '/download/pedidos/cliente/';
     cliente: any = null;
     compras: any = [];
     logoEmpresa = '../../../assets/logo.png';
@@ -26,7 +27,7 @@ export class DashboardPage implements OnInit {
             message: 'Obteniendo mis ordenes de compras...'
         });
         await loading.present();
-        this.ws.sendGet('/download/pedidos/cliente/' + this.cliente.id)
+        this.ws.sendGet(this.CTRL_DOWNLOAD + this.cliente.id)
             .then(
                 (res: any) => {
                     loading.dismiss();
@@ -72,7 +73,7 @@ export class DashboardPage implements OnInit {
         estado_id = Number(estado_id) || 0;
         if (estado_id === 2) { // Cancelada
             return 'danger';
-        } else if (estado_id === 1) { // Facturada
+        } else if (estado_id === 1 || estado_id === 3) { // Facturada ó Pagada
             return 'success';
         } else if (estado_id === 0) { // Sin facturar
             return 'dark-light';

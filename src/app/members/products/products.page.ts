@@ -12,6 +12,7 @@ import {CartService} from '../../services/cart.service';
 })
 export class ProductsPage implements OnInit {
 
+    protected CTRL_DOWNLOAD = '/download/productos/';
     cliente: any = null;
     datos: any = [];
     logoEmpresa = '../../../assets/logo.png';
@@ -47,7 +48,7 @@ export class ProductsPage implements OnInit {
         });
         await loading.present();
 
-        this.ws.sendGet('/download/productos/' + this.cliente.empresa_id)
+        this.ws.sendGet(this.CTRL_DOWNLOAD + this.cliente.empresa_id)
             .then(
                 (res: any) => {
                     loading.dismiss();

@@ -13,6 +13,7 @@ import {Router} from '@angular/router';
 })
 export class MyCartPage implements OnInit {
 
+    protected CTRL_CREATE = ''; // '/pedido/create'
     cliente: any = null;
     logoEmpresa = '../../../assets/logo.png';
     selectedItems = [];
@@ -76,8 +77,7 @@ export class MyCartPage implements OnInit {
             empresa_id: this.cliente.empresa_id,
             venta_detalles: this.selectedItems
         };
-        // this.ws.sendPost('/pedido/create', objCart)
-        this.ws.sendPost('', objCart)
+        this.ws.sendPost(this.CTRL_CREATE, objCart)
             .then((res: any) => {
                 loading.dismiss();
                 console.log('MyCartPage - orderMyCart', res);

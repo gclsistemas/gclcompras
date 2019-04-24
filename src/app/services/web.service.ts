@@ -6,7 +6,6 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 })
 export class WebService {
 
-    // protected urlWeb = 'https://gclsistemas.com.ar/pedidosclientes/';
     protected urlWeb = 'http://tuventa.local';
     protected urlWebApi = 'http://tuventa.local/pedidosclientes';
     protected httpHeaders = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
@@ -15,7 +14,7 @@ export class WebService {
     }
 
     get urlBase() {
-        return 'http://tuventa.local';
+        return this.urlWeb;
     }
 
     get urlFotoArticulo() {
