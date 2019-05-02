@@ -48,13 +48,13 @@ mis_compras: [<br/>
 ]-->
 productos: [<br/>
 &nbsp;&nbsp;0: {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;descripcion: string/null<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;id: int<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;nombre: string<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;precio: double<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;presentacion: string<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;procedencia: string<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;divisa_venta: double<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;descripcion: string/null<br/>
 &nbsp;&nbsp;}<br/>
 ]
 </p>
