@@ -30,22 +30,6 @@ mis_compras: [<br/>
 </p>
 <h1>Productos</h1>
 <p>
-<!--productos: [<br/>
-&nbsp;&nbsp;&nbsp;0: {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cantidad: null<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id: number<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;marca: string<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nombre: string<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;precio: double/currency<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;precio_id: number<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;presentacion: string<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;presentacion_id: number<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;seleccionado: boolean<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;oferta: boolean<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;foto: null/string<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;....<br/>
-]-->
 productos: [<br/>
 &nbsp;&nbsp;0: {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;id: int<br/>
@@ -56,6 +40,7 @@ productos: [<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;divisa_venta: double<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;descripcion: string/null<br/>
 &nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;...<br/>
 ]
 </p>
 
