@@ -1,6 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+// 13.05.19 GCL: Uso ChangeDetectorRef para actualizar el ion-slides ya que al buscar dejaba slide en blanco.
+
+import {Component, OnInit, ViewChild, ChangeDetectorRef} from '@angular/core';
 import {AuthenticationService} from '../../services/authentication.service';
-import {LoadingController, ToastController} from '@ionic/angular';
+import {LoadingController, IonSlides, ToastController, IonSlide} from '@ionic/angular';
 import {Router} from '@angular/router';
 import {WebService} from '../../services/web.service';
 import {CartService} from '../../services/cart.service';
@@ -12,6 +14,7 @@ import {CartService} from '../../services/cart.service';
 })
 export class ProductsPage implements OnInit {
 
+    @ViewChild(IonSlides) slides: IonSlides;
     protected CTRL_DOWNLOAD = '/download/productos/';
     cliente: any = null;
     datos: any = [];
@@ -89,10 +92,10 @@ export class ProductsPage implements OnInit {
                 }
             },
         }*/
-    }
+    };
 
     constructor(private authService: AuthenticationService, private cartService: CartService, private loadingController: LoadingController, private router: Router,
-                private toastController: ToastController, private ws: WebService) {
+                private toastController: ToastController, private ws: WebService, private cdr: ChangeDetectorRef) {
     }
 
     private async toastPresent(msg) {
@@ -173,23 +176,13 @@ export class ProductsPage implements OnInit {
     onSearchChange(event) {
         const val = event.target.value;
         // console.log(val);
-        // if (val === '') {
-        //     this.misDatos = this.datos;
-        // } else {
-        //     this.misDatos = this.datos.filter((item: any) => {
-        //         return (item.nombre.toLowerCase().indexOf(val.toLowerCase()) > -1 || item.id === Number(val));
-        //         // if (isNaN(val)) {
-        //         //     return item.producto.toLowerCase().indexOf(val.toLowerCase()) > -1;
-        //         // } else {
-        //         //     return item.articulo_id === Number(val);
-        //         // }
-        //     });
-        // }
         this.misDatos = this.datos;
         if (val && val.trim() !== '') {
             this.misDatos = this.misDatos.filter((item: any) => {
                 return (item.nombre.toLowerCase().indexOf(val.toLowerCase()) > -1 || item.id === Number(val));
             });
+            this.slides.update();
+            this.cdr.detectChanges();
         }
     }
 
