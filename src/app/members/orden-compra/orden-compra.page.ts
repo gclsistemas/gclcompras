@@ -9,6 +9,10 @@ import {DatePipe} from '@angular/common';
 })
 export class OrdenCompraPage implements OnInit {
 
+    readonly FACTURA_SIN_EMITIDA: number = 0;
+    readonly FACTURA_EMITIDA: number = 1;
+    readonly FACTURA_CANCELADA: number = 2;
+    readonly FACTURA_PAGADA: number = 3;
     datos: any;
     logoEmpresa = '../../../assets/logo.png';
     total = 0;
@@ -23,11 +27,11 @@ export class OrdenCompraPage implements OnInit {
     }
 
     colorEstado(estado_id) {
-        if (estado_id === 2) { // Cancelada
+        if (estado_id === this.FACTURA_CANCELADA) {
             return 'danger';
-        } else if (estado_id === 1 || estado_id === 3) { // Facturada ó Pagada
+        } else if (estado_id === this.FACTURA_EMITIDA || estado_id === this.FACTURA_PAGADA) {
             return 'success';
-        } else if (estado_id === 0) { // Sin facturar
+        } else if (estado_id === this.FACTURA_SIN_EMITIDA) { // Sin facturar
             return 'dark-light';
         }
     }

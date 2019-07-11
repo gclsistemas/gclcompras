@@ -2,6 +2,7 @@
     <ion-toolbar>
         <ion-buttons slot="start">
             <ion-menu-button></ion-menu-button>
+            <ion-back-button></ion-back-button>
         </ion-buttons>
         <ion-title>
             <img [src]="logoEmpresa"/>
@@ -10,9 +11,11 @@
 </ion-header>
 
 <ion-content padding>
-    <h1 text-center>Orden Compra Nro {{datos.id}}</h1>
+    <h1 text-center>
+        Orden Compra Nro {{datos.id}}
+    </h1>
     <!-- Se muestra solo cuando el estado = 2 = cancelada -->
-    <ion-label [color]="colorEstado(datos.estado_id)" *ngIf="datos.estado_id === 2">{{datos.estado}}</ion-label>
+    <ion-label [color]="colorEstado(datos.estado_id)" *ngIf="datos.estado_id === FACTURA_CANCELADA">{{datos.estado}}</ion-label>
     <!--<ion-grid>
         <ion-row>
             <ion-col>
@@ -53,7 +56,7 @@
                 <p>Fecha: {{datos.fecha | date: 'd/MM/y'}}</p>
                 <p *ngIf="datos.factura">Factura: {{datos.factura}}</p>
                 &lt;!&ndash; Se muestra solo cuando el estado != 2 != cancelada &ndash;&gt;
-                <p *ngIf="datos.estado_id !== 2">Facturación: {{datos.estado}}</p>
+                <p *ngIf="datos.estado_id !== FACTURA_CANCELADA">Facturación: {{datos.estado}}</p>
                 <p *ngIf="datos.fechaEnvio">Enviada: {{datos.fechaEnvio | date: 'd/MM/y'}}</p>
             </ion-label>
         </ion-list-header>-->
@@ -70,7 +73,7 @@
                     </span>
                 </p>
                 <div></div>
-                <p *ngIf="datos.estado_id !== 2">Facturación: {{datos.estado}}</p>
+                <p *ngIf="datos.estado_id !== FACTURA_CANCELADA">Facturación: {{datos.estado}}</p>
                 <p *ngIf="datos.fechaEnvio"><ion-icon name="bus"></ion-icon> {{datos.fechaEnvio | date: 'd/MM/y'}}</p>
             </ion-label>
         </ion-item>
