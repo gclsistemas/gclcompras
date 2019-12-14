@@ -6,11 +6,11 @@ import {DatePipe} from '@angular/common';
 import {Router} from '@angular/router';
 
 @Component({
-    selector: 'app-dashboard',
-    templateUrl: './dashboard.page.html',
-    styleUrls: ['./dashboard.page.scss'],
+    selector: 'app-myorders',
+    templateUrl: './myorders.page.html',
+    styleUrls: ['./myorders.page.scss'],
 })
-export class DashboardPage implements OnInit {
+export class MyOrdersPage implements OnInit {
 
     protected CTRL_DOWNLOAD = '/download/pedidos/cliente/';
     cliente: any = null;
@@ -94,8 +94,8 @@ export class DashboardPage implements OnInit {
     // }
 
     goToOrdenCompra(item) {
-        console.log('DashboardPage - goToOrdenCompra');
-        this.router.navigate(['members', 'orden-compra', {logoEmpresa: this.logoEmpresa, orden: JSON.stringify(item)}]);
+        console.log('MyOrders - goToOrdenCompra');
+        this.router.navigate(['members', 'myorder', {logoEmpresa: this.logoEmpresa, orden: JSON.stringify(item)}]);
     }
 
     importeTotal(compras: any[]) {
@@ -107,7 +107,7 @@ export class DashboardPage implements OnInit {
     }
 
     ngOnInit() {
-        console.log('DashboardPage - ngOnInit');
+        console.log('MyOrders - ngOnInit');
         this.authService.token.then(
             (user: any) => {
                 // console.log(data);

@@ -5,13 +5,10 @@ import {Routes, RouterModule} from '@angular/router';
 
 import {IonicModule} from '@ionic/angular';
 
-import {MyCartPage} from './my-cart.page';
+import {MyOrdersPage} from './myorders.page';
 
 const routes: Routes = [
-    {
-        path: '',
-        component: MyCartPage
-    }
+    {path: '', component: MyOrdersPage}
 ];
 
 @NgModule({
@@ -21,8 +18,8 @@ const routes: Routes = [
         IonicModule,
         RouterModule.forChild(routes)
     ],
-    declarations: [MyCartPage],
+    declarations: [MyOrdersPage],
     providers: [DatePipe]
 })
-export class MyCartPageModule {
+export class MyOrdersPageModule {
 }

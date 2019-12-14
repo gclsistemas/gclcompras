@@ -170,7 +170,7 @@ export class ProductsPage implements OnInit {
     }
 
     openMyCart() {
-        this.router.navigate(['members', 'my-cart']);
+        this.router.navigate(['members', 'mycart']);
     }
 
     onSearchChange(event) {

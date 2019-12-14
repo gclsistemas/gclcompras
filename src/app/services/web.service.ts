@@ -6,10 +6,14 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 })
 export class WebService {
 
-    /*protected urlWeb = 'http://tuventa.local';
-    protected urlWebApi = 'http://tuventa.local/pedidosclientes';*/
-    protected urlWeb = 'http://192.168.0.110/tuventa/public';
-    protected urlWebApi = 'http://192.168.0.110/tuventa/public/pedidosclientes';
+    // protected urlWeb = 'http://tuventa.local';
+    // protected urlWebApi = 'http://tuventa.local/pedidosclientes';
+    protected urlWeb = 'http://tuventa.gclsistemas.com.ar';
+    protected urlWebApi = 'http://tuventa.gclsistemas.com.ar/pedidosclientes';
+    // protected urlWeb = 'api/';
+    // protected urlWebApi = 'api/pedidosclientes';
+    /*protected urlWeb = 'http://192.168.0.110/tuventa/public';
+    protected urlWebApi = 'http://192.168.0.110/tuventa/public/pedidosclientes';*/
     protected httpHeaders = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
 
     constructor(private http: HttpClient) {

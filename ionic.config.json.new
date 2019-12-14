@@ -1,0 +1,14 @@
+{
+  "name": "gclcompras",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular",
+  "v3": true,
+  "proxies": [
+    {
+      "path": "/api/",
+      "proxyUrl": "https://tuventa.gclsistemas.com.ar/"
+    }
+  ]
+}

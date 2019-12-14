@@ -7,9 +7,9 @@ import {DatePipe} from '@angular/common';
 import {Router} from '@angular/router';
 
 @Component({
-    selector: 'app-my-cart',
-    templateUrl: './my-cart.page.html',
-    styleUrls: ['./my-cart.page.scss'],
+    selector: 'app-mycart',
+    templateUrl: './mycart.page.html',
+    styleUrls: ['./mycart.page.scss'],
 })
 export class MyCartPage implements OnInit {
 
@@ -90,7 +90,7 @@ export class MyCartPage implements OnInit {
                     console.log(toast);
                 });
                 this.cartService.delCart();
-                this.router.navigate(['members', 'orden-compra', {logoEmpresa: this.logoEmpresa, orden: JSON.stringify(res.mi_compra)}]);
+                this.router.navigate(['members', 'myorder', {logoEmpresa: this.logoEmpresa, orden: JSON.stringify(res.mi_compra)}]);
             }, error => {
                 loading.dismiss();
                 console.log(error);

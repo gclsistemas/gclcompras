@@ -2,10 +2,10 @@ import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 
 const routes: Routes = [
-    {path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardPageModule'},
-    {path: 'orden-compra', loadChildren: './orden-compra/orden-compra.module#OrdenCompraPageModule'},
+    {path: 'myorders', loadChildren: './myorders/myorders.module#MyOrdersPageModule'},
+    {path: 'myorder', loadChildren: './myorder/myorder.module#MyOrderPageModule'},
     {path: 'products', loadChildren: './products/products.module#ProductsPageModule'},
-  { path: 'my-cart', loadChildren: './my-cart/my-cart.module#MyCartPageModule' }
+  { path: 'mycart', loadChildren: './mycart/mycart.module#MyCartPageModule' }
 ];
 
 @NgModule({

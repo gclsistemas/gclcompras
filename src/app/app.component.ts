@@ -14,8 +14,8 @@ export class AppComponent {
 
     public appPages = [
         {
-            title: 'Dashboard',
-            url: '/members/dashboard',
+            title: 'Mis pedidos',
+            url: '/members/myorders',
             icon: 'home'
         },
         {
