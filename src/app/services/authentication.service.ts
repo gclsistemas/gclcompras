@@ -13,6 +13,7 @@ export class AuthenticationService {
 
     authenticationState = new BehaviorSubject(false);
     protected CTRL_LOGIN = '/check/login';
+    protected CTRL_REGISTER = '/register/user';
 
     constructor(private ws: WebService, private loadingController: LoadingController, private plt: Platform, private toast: ToastController, private storage: Storage) {
         this.plt.ready().then(() => {
@@ -72,46 +73,46 @@ export class AuthenticationService {
             });*/
         return this.ws.sendGet(this.CTRL_LOGIN, obj)
             .then(
-            (res: any) => {
-                loading.dismiss();
-                console.log(res);
-                if (res.message) {
-                    // alert(res.message);
+                (res: any) => {
+                    loading.dismiss();
+                    console.log(res);
+                    if (res.message) {
+                        // alert(res.message);
+                        this.toast.create({
+                            message: res.message,
+                            position: 'bottom',
+                            duration: 3000,
+                            showCloseButton: false
+                        }).then(toast => {
+                            console.log(toast);
+                        });
+                        return;
+                    }
+                    const usr: any = res.user;
+                    // if (usr.logoEmpresa) {
+                    //     usr.logoEmpresa = this.ws.urlBase + 'img/' + usr.empresa_id + '.png';
+                    // } else {
+                    //     usr.logoEmpresa = '../../../assets/logo.png';
+                    // }
+                    if (usr.logoEmpresa === false) {
+                        usr.logoEmpresa = '../../../assets/logo.png';
+                    }
+                    return this.storage.set(TOKEN_KEY, usr).then(() => {
+                        this.authenticationState.next(true);
+                    });
+                },
+                error => {
+                    loading.dismiss();
                     this.toast.create({
-                        message: res.message,
+                        message: error,
                         position: 'bottom',
                         duration: 3000,
                         showCloseButton: false
                     }).then(toast => {
                         console.log(toast);
                     });
-                    return;
                 }
-                const usr: any = res.user;
-                // if (usr.logoEmpresa) {
-                //     usr.logoEmpresa = this.ws.urlBase + 'img/' + usr.empresa_id + '.png';
-                // } else {
-                //     usr.logoEmpresa = '../../../assets/logo.png';
-                // }
-                if (usr.logoEmpresa === false) {
-                    usr.logoEmpresa = '../../../assets/logo.png';
-                }
-                return this.storage.set(TOKEN_KEY, usr).then(() => {
-                    this.authenticationState.next(true);
-                });
-            },
-            error => {
-                loading.dismiss();
-                this.toast.create({
-                    message: error,
-                    position: 'bottom',
-                    duration: 3000,
-                    showCloseButton: false
-                }).then(toast => {
-                    console.log(toast);
-                });
-            }
-        );
+            );
     }
 
     logout() {
@@ -124,4 +125,46 @@ export class AuthenticationService {
         return this.authenticationState.value;
     }
 
+    async register(obj: any) {
+        const loading = await this.loadingController.create({
+            message: 'Registrando usuario...'
+        });
+        await loading.present();
+        return this.ws.sendGet(this.CTRL_REGISTER, obj)
+            .then(
+                (res: any) => {
+                    loading.dismiss();
+                    console.log(res);
+                    if (res.message) {
+                        this.toast.create({
+                            message: res.message,
+                            position: 'bottom',
+                            duration: 3000,
+                            showCloseButton: false
+                        }).then(toast => {
+                            console.log(toast);
+                        });
+                        return;
+                    }
+                    const usr: any = res.user;
+                    if (usr.logoEmpresa === false) {
+                        usr.logoEmpresa = '../../../assets/logo.png';
+                    }
+                    return this.storage.set(TOKEN_KEY, usr).then(() => {
+                        this.authenticationState.next(true);
+                    });
+                },
+                error => {
+                    loading.dismiss();
+                    this.toast.create({
+                        message: error,
+                        position: 'bottom',
+                        duration: 3000,
+                        showCloseButton: false
+                    }).then(toast => {
+                        console.log(toast);
+                    });
+                }
+            );
+    }
 }

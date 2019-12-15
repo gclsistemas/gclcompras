@@ -3,10 +3,72 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/login"></ion-back-button>
     </ion-buttons>
-    <ion-title>Register</ion-title>
+    <ion-title>Registración</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content color="custom-red" padding>
+  <ion-grid>
+    <ion-row justify-content-center>
+      <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+        <div color-light padding text-center>
+          <img src="../../../assets/logo.png"/>
+        </div>
+        <div padding>
+          <form novalidate [formGroup]="myForm" (ngSubmit)="register()">
+            <ion-input type="text" formControlName="empresa" expand="block" placeholder="Empresa" required></ion-input>
+            <div class="validation-errors">
+              <ng-container *ngFor="let ctrl of validations.empresa | keyvalue">
+                <div class="error-message" *ngIf="f.empresa.hasError(ctrl.key) && (f.empresa.dirty || f.empresa.touched)">
+                  {{ctrl.value}}
+                </div>
+              </ng-container>
+            </div>
 
+            <ion-input type="text" formControlName="apellido" expand="block" placeholder="Apellido" required></ion-input>
+            <div class="validation-errors">
+              <ng-container *ngFor="let ctrl of validations.apellido | keyvalue">
+                <div class="error-message" *ngIf="f.apellido.hasError(ctrl.key) && (f.apellido.dirty || f.apellido.touched)">
+                  {{ctrl.value}}
+                </div>
+              </ng-container>
+            </div>
+
+            <ion-input type="text" formControlName="nombre" expand="block" placeholder="Nombre" required></ion-input>
+            <div class="validation-errors">
+              <ng-container *ngFor="let ctrl of validations.nombre | keyvalue">
+                <div class="error-message" *ngIf="f.nombre.hasError(ctrl.key) && (f.nombre.dirty || f.nombre.touched)">
+                  {{ctrl.value}}
+                </div>
+              </ng-container>
+            </div>
+
+            <ion-input type="email" formControlName="email" expand="block" placeholder="Email" required></ion-input>
+            <div class="validation-errors">
+              <ng-container *ngFor="let ctrl of validations.email | keyvalue">
+                <div class="error-message" *ngIf="f.email.hasError(ctrl.key) && (f.email.dirty || f.email.touched)">
+                  {{ctrl.value}}
+                </div>
+              </ng-container>
+            </div>
+
+            <ion-input type="password" formControlName="password" expand="block" placeholder="Contraseña" required></ion-input>
+            <div class="validation-errors">
+              <ng-container *ngFor="let ctrl of validations.password | keyvalue">
+                <div class="error-message" *ngIf="f.password.hasError(ctrl.key) && (f.password.dirty || f.password.touched)">
+                  {{ctrl.value}}
+                </div>
+              </ng-container>
+            </div>
+
+            <div padding text-center>
+              <ion-button type="submit" color="light" fill="outline" size="small" shape="round" [disabled]="!myForm.valid">
+                <ion-icon slot="icon-only" name="log-in"></ion-icon>
+              </ion-button>
+            </div>
+          </form>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
