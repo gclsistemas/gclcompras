@@ -9,6 +9,12 @@ export class ValidationService {
         apellido: {
             required: 'El apellido es obligatorio.',
         },
+        celular: {
+            required: 'La dirección es obligatoria.',
+        },
+        direccion: {
+            required: 'La dirección es obligatoria.',
+        },
         email: {
             required: 'El email es obligatorio.',
             email: 'Correo electronico no válido.'
@@ -16,6 +22,9 @@ export class ValidationService {
         },
         empresa: {
             required: 'La empresa es obligatoria.',
+        },
+        localidad: {
+            required: 'La localidad es obligatoria.',
         },
         nombre: {
             required: 'El nombre es obligatorio.',

@@ -10,6 +10,7 @@ import {ValidationService} from '../../services/validation.service';
 })
 export class RegisterPage implements OnInit {
 
+    protected EMPRESA_ID = 1;
     myForm: FormGroup;
 
     constructor(private authService: AuthenticationService, private formBuilder: FormBuilder, private validationService: ValidationService) {
@@ -30,13 +31,17 @@ export class RegisterPage implements OnInit {
         console.log('RegisterPage - ngOnInit');
         this.myForm = this.formBuilder.group({
             // name: new FormControl('', Validators.required),
-            empresa: new FormControl('', Validators.compose([
+            /*empresa: new FormControl('', Validators.compose([
                 Validators.required
-            ])),
+            ])),*/
             apellido: new FormControl('', Validators.compose([
                 Validators.required
             ])),
-            nombre: new FormControl('', Validators.compose([
+            celular: new FormControl('', Validators.compose([
+                Validators.required
+            ])),
+            // confirm_password: new FormControl('', Validators.required),
+            direccion: new FormControl('', Validators.compose([
                 Validators.required
             ])),
             email: new FormControl('', Validators.compose([
@@ -44,13 +49,18 @@ export class RegisterPage implements OnInit {
                 // Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
                 Validators.email
             ])),
+            localidad: new FormControl('', Validators.compose([
+                Validators.required
+            ])),
+            nombre: new FormControl('', Validators.compose([
+                Validators.required
+            ])),
             password: new FormControl('', Validators.compose([
                 Validators.minLength(5),
                 Validators.required,
                 // this is for the letters (both uppercase and lowercase) and numbers validation
                 // Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')
-            ])) // ,
-            // confirm_password: new FormControl('', Validators.required)
+            ]))
         });
     }
 
@@ -61,11 +71,14 @@ export class RegisterPage implements OnInit {
             return;
         }
         const data = {
-            empresa: this.myForm.value['empresa'],
+            // empresa: this.myForm.value['empresa'],
+            empresa_id: this.EMPRESA_ID, // this.myForm.value['empresa'],
             apellido: this.myForm.value['apellido'],
             nombre: this.myForm.value['nombre'],
             email: this.myForm.value['email'],
-            password: this.myForm.value['password']
+            password: this.myForm.value['password'],
+            direccion: this.myForm.value['direccion'] + '\n' + this.myForm.value['localidad'],
+            cel: this.myForm.value['celular']
         };
         this.authService.register(data);
         // alert('imei: ' + this.device.uuid);

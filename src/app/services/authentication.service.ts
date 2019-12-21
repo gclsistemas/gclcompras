@@ -33,6 +33,16 @@ export class AuthenticationService {
         return this.storage.get(TOKEN_KEY);
     }
 
+    async presentToast(message) {
+        const toast = await this.toast.create({
+            message: message,
+            position: 'bottom',
+            duration: 3000,
+            showCloseButton: false
+        });
+        toast.present();
+    }
+
     async login(obj: any) {
         // return this.storage.set(TOKEN_KEY, 'Bearer 1234567').then(() => {
         //     this.authenticationState.next(true);
@@ -74,8 +84,8 @@ export class AuthenticationService {
         return this.ws.sendGet(this.CTRL_LOGIN, obj)
             .then(
                 (res: any) => {
-                    loading.dismiss();
                     console.log(res);
+                    /*loading.dismiss();
                     if (res.message) {
                         // alert(res.message);
                         this.toast.create({
@@ -99,10 +109,23 @@ export class AuthenticationService {
                     }
                     return this.storage.set(TOKEN_KEY, usr).then(() => {
                         this.authenticationState.next(true);
+                    });*/
+                    loading.dismiss().then(() => {
+                        if (res.message) {
+                            this.presentToast(res.message);
+                            return;
+                        }
+                        const usr: any = res.user;
+                        if (usr.logoEmpresa === false) {
+                            usr.logoEmpresa = '../../../assets/logo.png';
+                        }
+                        return this.storage.set(TOKEN_KEY, usr).then(() => {
+                            this.authenticationState.next(true);
+                        });
                     });
                 },
                 error => {
-                    loading.dismiss();
+                    /*loading.dismiss();
                     this.toast.create({
                         message: error,
                         position: 'bottom',
@@ -110,6 +133,9 @@ export class AuthenticationService {
                         showCloseButton: false
                     }).then(toast => {
                         console.log(toast);
+                    });*/
+                    loading.dismiss().then(() => {
+                        this.presentToast(error);
                     });
                 }
             );
@@ -127,14 +153,15 @@ export class AuthenticationService {
 
     async register(obj: any) {
         const loading = await this.loadingController.create({
-            message: 'Registrando usuario...'
+            message: 'Registrando usuario...',
+            duration: 1500
         });
         await loading.present();
         return this.ws.sendGet(this.CTRL_REGISTER, obj)
             .then(
                 (res: any) => {
-                    loading.dismiss();
                     console.log(res);
+                    /*loading.dismiss();
                     if (res.message) {
                         this.toast.create({
                             message: res.message,
@@ -152,10 +179,23 @@ export class AuthenticationService {
                     }
                     return this.storage.set(TOKEN_KEY, usr).then(() => {
                         this.authenticationState.next(true);
+                    });*/
+                    loading.dismiss().then(() => {
+                        if (res.message) {
+                            this.presentToast(res.message);
+                            return;
+                        }
+                        const usr: any = res.user;
+                        if (usr.logoEmpresa === false) {
+                            usr.logoEmpresa = '../../../assets/logo.png';
+                        }
+                        return this.storage.set(TOKEN_KEY, usr).then(() => {
+                            this.authenticationState.next(true);
+                        });
                     });
                 },
                 error => {
-                    loading.dismiss();
+                    /*loading.dismiss();
                     this.toast.create({
                         message: error,
                         position: 'bottom',
@@ -163,6 +203,9 @@ export class AuthenticationService {
                         showCloseButton: false
                     }).then(toast => {
                         console.log(toast);
+                    });*/
+                    loading.dismiss().then(() => {
+                        this.presentToast(error);
                     });
                 }
             );

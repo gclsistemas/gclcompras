@@ -16,14 +16,14 @@
         </div>
         <div padding>
           <form novalidate [formGroup]="myForm" (ngSubmit)="register()">
-            <ion-input type="text" formControlName="empresa" expand="block" placeholder="Empresa" required></ion-input>
+            <!--<ion-input type="text" formControlName="empresa" expand="block" placeholder="Empresa" required></ion-input>
             <div class="validation-errors">
               <ng-container *ngFor="let ctrl of validations.empresa | keyvalue">
                 <div class="error-message" *ngIf="f.empresa.hasError(ctrl.key) && (f.empresa.dirty || f.empresa.touched)">
                   {{ctrl.value}}
                 </div>
               </ng-container>
-            </div>
+            </div>-->
 
             <ion-input type="text" formControlName="apellido" expand="block" placeholder="Apellido" required></ion-input>
             <div class="validation-errors">
@@ -56,6 +56,33 @@
             <div class="validation-errors">
               <ng-container *ngFor="let ctrl of validations.password | keyvalue">
                 <div class="error-message" *ngIf="f.password.hasError(ctrl.key) && (f.password.dirty || f.password.touched)">
+                  {{ctrl.value}}
+                </div>
+              </ng-container>
+            </div>
+
+            <ion-input type="text" formControlName="direccion" expand="block" placeholder="Calle N°" required></ion-input>
+            <div class="validation-errors">
+              <ng-container *ngFor="let ctrl of validations.direccion | keyvalue">
+                <div class="error-message" *ngIf="f.direccion.hasError(ctrl.key) && (f.direccion.dirty || f.direccion.touched)">
+                  {{ctrl.value}}
+                </div>
+              </ng-container>
+            </div>
+
+            <ion-input type="text" formControlName="localidad" expand="block" placeholder="Localidad (CP), Pcia" required></ion-input>
+            <div class="validation-errors">
+              <ng-container *ngFor="let ctrl of validations.localidad | keyvalue">
+                <div class="error-message" *ngIf="f.localidad.hasError(ctrl.key) && (f.localidad.dirty || f.localidad.touched)">
+                  {{ctrl.value}}
+                </div>
+              </ng-container>
+            </div>
+
+            <ion-input type="text" formControlName="celular" expand="block" placeholder="Celular" required></ion-input>
+            <div class="validation-errors">
+              <ng-container *ngFor="let ctrl of validations.celular | keyvalue">
+                <div class="error-message" *ngIf="f.celular.hasError(ctrl.key) && (f.celular.dirty || f.celular.touched)">
                   {{ctrl.value}}
                 </div>
               </ng-container>
