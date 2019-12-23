@@ -51,65 +51,10 @@ export class AuthenticationService {
             message: 'Validando usuario...'
         });
         await loading.present();
-        /*return this.hc.get(this.urlWeb + '/checklogin', {headers: this.httpHeaders, params: obj})
-            .subscribe((res: any) => {
-                loading.dismiss();
-                console.log(res);
-                if (res.message) {
-                    // alert(res.message);
-                    this.toast.create({
-                        message: res.message,
-                        position: 'bottom',
-                        duration: 3000,
-                        showCloseButton: false
-                    }).then(toast => {
-                        console.log(toast);
-                    });
-                    return;
-                }
-                return this.storage.set(TOKEN_KEY, res).then(() => {
-                    this.authenticationState.next(true);
-                });
-            }, error => {
-                loading.dismiss();
-                this.toast.create({
-                    message: error,
-                    position: 'bottom',
-                    duration: 3000,
-                    showCloseButton: false
-                }).then(toast => {
-                    console.log(toast);
-                });
-            });*/
         return this.ws.sendGet(this.CTRL_LOGIN, obj)
             .then(
                 (res: any) => {
                     console.log(res);
-                    /*loading.dismiss();
-                    if (res.message) {
-                        // alert(res.message);
-                        this.toast.create({
-                            message: res.message,
-                            position: 'bottom',
-                            duration: 3000,
-                            showCloseButton: false
-                        }).then(toast => {
-                            console.log(toast);
-                        });
-                        return;
-                    }
-                    const usr: any = res.user;
-                    // if (usr.logoEmpresa) {
-                    //     usr.logoEmpresa = this.ws.urlBase + 'img/' + usr.empresa_id + '.png';
-                    // } else {
-                    //     usr.logoEmpresa = '../../../assets/logo.png';
-                    // }
-                    if (usr.logoEmpresa === false) {
-                        usr.logoEmpresa = '../../../assets/logo.png';
-                    }
-                    return this.storage.set(TOKEN_KEY, usr).then(() => {
-                        this.authenticationState.next(true);
-                    });*/
                     loading.dismiss().then(() => {
                         if (res.message) {
                             this.presentToast(res.message);
@@ -125,15 +70,6 @@ export class AuthenticationService {
                     });
                 },
                 error => {
-                    /*loading.dismiss();
-                    this.toast.create({
-                        message: error,
-                        position: 'bottom',
-                        duration: 3000,
-                        showCloseButton: false
-                    }).then(toast => {
-                        console.log(toast);
-                    });*/
                     loading.dismiss().then(() => {
                         this.presentToast(error);
                     });

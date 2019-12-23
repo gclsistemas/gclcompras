@@ -1,0 +1,18 @@
+{
+  "android": {
+    "debug": {
+      "keystore": "gclcompras.keystore",
+      "storePassword": "gclsis2014",
+      "alias": "gclcompras",
+      "password" : "gclsis2014",
+      "keystoreType": ""
+    },
+    "release": {
+      "keystore": "gclcompras.keystore",
+      "storePassword": "gclsis2014",
+      "alias": "gclcompras",
+      "password" : "gclsis2014",
+      "keystoreType": ""
+    }
+  }
+}
