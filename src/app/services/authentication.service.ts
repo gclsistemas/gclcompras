@@ -12,6 +12,7 @@ const TOKEN_KEY = 'auth-token';
 export class AuthenticationService {
 
     authenticationState = new BehaviorSubject(false);
+    protected CTRL_CHECK_ORDER_DATE = '/check/order/date'; // Obtiene las fechas de inicio y finalización de pedidos
     protected CTRL_LOGIN = '/check/login';
     protected CTRL_REGISTER = '/register/user';
 
@@ -33,7 +34,7 @@ export class AuthenticationService {
         return this.storage.get(TOKEN_KEY);
     }
 
-    async presentToast(message) {
+    private async presentToast(message) {
         const toast = await this.toast.create({
             message: message,
             position: 'bottom',
@@ -41,6 +42,30 @@ export class AuthenticationService {
             showCloseButton: false
         });
         toast.present();
+    }
+
+    async fehcas_inicio_fin_pedidos(obj: any) {
+        const loading = await this.loadingController.create({
+            message: 'Obteniendo fechas de inicio y finalización de pedidos...'
+        });
+        await loading.present();
+        /*return this.ws.sendGet(this.CTRL_CHECK_ORDER_DATE, obj)
+            .then(
+                (res: any) => {
+                    console.log(res);
+                    loading.dismiss().then(() => {
+                        return res;
+                    });
+                },
+                error => {
+                    loading.dismiss().then(() => {
+                        this.presentToast(error);
+                    });
+                }
+            );*/
+        const res = this.ws.sendGet(this.CTRL_CHECK_ORDER_DATE, obj);
+        res.then(() => { loading.dismiss(); })
+        return res;
     }
 
     async login(obj: any) {

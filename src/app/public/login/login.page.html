@@ -40,6 +40,11 @@
                     </form>
                 </div>
             </ion-col>
+            <ion-col align-self-center size-md="6" size-lg="5" size-xs="12" *ngIf="info">
+                <div padding text-center>
+                    {{info}}
+                </div>
+            </ion-col>
         </ion-row>
     </ion-grid>
 </ion-content>

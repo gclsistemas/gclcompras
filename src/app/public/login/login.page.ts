@@ -11,6 +11,8 @@ import {ValidationService} from '../../services/validation.service';
 })
 export class LoginPage implements OnInit {
 
+    protected EMPRESA_ID = 1;
+    info: any = '';
     myForm: FormGroup;
 
     // private markFieldsDirty() {
@@ -57,6 +59,10 @@ export class LoginPage implements OnInit {
                 // Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')
             ])) // ,
             // confirm_password: new FormControl('', Validators.required)
+        });
+        // Traigo las fechas de habilitacion de pedidos.
+        this.authService.fehcas_inicio_fin_pedidos({empresa_id: this.EMPRESA_ID}).then((res: any) => {
+            this.info = res.message;
         });
     }
 
