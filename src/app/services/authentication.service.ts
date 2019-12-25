@@ -1,8 +1,9 @@
-import {LoadingController, Platform, ToastController} from '@ionic/angular';
+import {LoadingController, Platform} from '@ionic/angular';
 import {Injectable} from '@angular/core';
 import {Storage} from '@ionic/storage';
 import {BehaviorSubject} from 'rxjs';
 import {WebService} from './web.service';
+import {ToastService} from './toast.service';
 
 const TOKEN_KEY = 'auth-token';
 
@@ -16,7 +17,7 @@ export class AuthenticationService {
     protected CTRL_LOGIN = '/check/login';
     protected CTRL_REGISTER = '/register/user';
 
-    constructor(private ws: WebService, private loadingController: LoadingController, private plt: Platform, private toast: ToastController, private storage: Storage) {
+    constructor(private ws: WebService, private loadingController: LoadingController, private plt: Platform, private toast: ToastService, private storage: Storage) {
         this.plt.ready().then(() => {
             this.checkToken();
         });
@@ -34,37 +35,15 @@ export class AuthenticationService {
         return this.storage.get(TOKEN_KEY);
     }
 
-    private async presentToast(message) {
-        const toast = await this.toast.create({
-            message: message,
-            position: 'bottom',
-            duration: 3000,
-            showCloseButton: false
-        });
-        toast.present();
-    }
-
     async fehcas_inicio_fin_pedidos(obj: any) {
         const loading = await this.loadingController.create({
             message: 'Obteniendo fechas de inicio y finalización de pedidos...'
         });
         await loading.present();
-        /*return this.ws.sendGet(this.CTRL_CHECK_ORDER_DATE, obj)
-            .then(
-                (res: any) => {
-                    console.log(res);
-                    loading.dismiss().then(() => {
-                        return res;
-                    });
-                },
-                error => {
-                    loading.dismiss().then(() => {
-                        this.presentToast(error);
-                    });
-                }
-            );*/
         const res = this.ws.sendGet(this.CTRL_CHECK_ORDER_DATE, obj);
-        res.then(() => { loading.dismiss(); })
+        res.then(() => {
+            loading.dismiss();
+        });
         return res;
     }
 
@@ -82,7 +61,7 @@ export class AuthenticationService {
                     console.log(res);
                     loading.dismiss().then(() => {
                         if (res.message) {
-                            this.presentToast(res.message);
+                            this.toast.presentToast(res.message);
                             return;
                         }
                         const usr: any = res.user;
@@ -96,7 +75,7 @@ export class AuthenticationService {
                 },
                 error => {
                     loading.dismiss().then(() => {
-                        this.presentToast(error);
+                        this.toast.presentToast(error);
                     });
                 }
             );
@@ -122,28 +101,9 @@ export class AuthenticationService {
             .then(
                 (res: any) => {
                     console.log(res);
-                    /*loading.dismiss();
-                    if (res.message) {
-                        this.toast.create({
-                            message: res.message,
-                            position: 'bottom',
-                            duration: 3000,
-                            showCloseButton: false
-                        }).then(toast => {
-                            console.log(toast);
-                        });
-                        return;
-                    }
-                    const usr: any = res.user;
-                    if (usr.logoEmpresa === false) {
-                        usr.logoEmpresa = '../../../assets/logo.png';
-                    }
-                    return this.storage.set(TOKEN_KEY, usr).then(() => {
-                        this.authenticationState.next(true);
-                    });*/
                     loading.dismiss().then(() => {
                         if (res.message) {
-                            this.presentToast(res.message);
+                            this.toast.presentToast(res.message);
                             return;
                         }
                         const usr: any = res.user;
@@ -156,17 +116,8 @@ export class AuthenticationService {
                     });
                 },
                 error => {
-                    /*loading.dismiss();
-                    this.toast.create({
-                        message: error,
-                        position: 'bottom',
-                        duration: 3000,
-                        showCloseButton: false
-                    }).then(toast => {
-                        console.log(toast);
-                    });*/
                     loading.dismiss().then(() => {
-                        this.presentToast(error);
+                        this.toast.presentToast(error);
                     });
                 }
             );

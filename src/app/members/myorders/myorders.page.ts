@@ -1,9 +1,10 @@
 import {AuthenticationService} from './../../services/authentication.service';
 import {Component, OnInit} from '@angular/core';
 import {WebService} from '../../services/web.service';
-import {LoadingController, ToastController} from '@ionic/angular';
+import {LoadingController} from '@ionic/angular';
 import {DatePipe} from '@angular/common';
 import {Router} from '@angular/router';
+import {ToastService} from '../../services/toast.service';
 
 @Component({
     selector: 'app-myorders',
@@ -18,33 +19,28 @@ export class MyOrdersPage implements OnInit {
     logoEmpresa = '../../../assets/logo.png';
     misCompras: any = [];
 
-    constructor(private authService: AuthenticationService, private datePipe: DatePipe, private loadingController: LoadingController, private router: Router, private toast: ToastController,
+    constructor(private authService: AuthenticationService, private datePipe: DatePipe, private loadingController: LoadingController, private router: Router, private toast: ToastService,
                 private ws: WebService) {
     }
 
     private async misOrdenesCompras() {
         const loading = await this.loadingController.create({
-            message: 'Obteniendo mis ordenes de compras...'
+            message: 'Obteniendo mis pedidos de compras...'
         });
         await loading.present();
         this.ws.sendGet(this.CTRL_DOWNLOAD + this.cliente.id)
             .then(
                 (res: any) => {
-                    loading.dismiss();
-                    this.compras = res.mis_compras;
-                    this.misCompras = this.compras;
-                    console.log(this.misCompras);
+                    loading.dismiss().then(() => {
+                        this.compras = res.mis_compras;
+                        this.misCompras = this.compras;
+                        console.log(this.misCompras);
+                    });
                 },
                 error => {
-                    loading.dismiss();
                     console.log(error);
-                    this.toast.create({
-                        message: error,
-                        position: 'bottom',
-                        duration: 3000,
-                        showCloseButton: false
-                    }).then(toast => {
-                        console.log(toast);
+                    loading.dismiss().then(() => {
+                        this.toast.presentToast(error);
                     });
                 }
             );
@@ -112,12 +108,13 @@ export class MyOrdersPage implements OnInit {
             (user: any) => {
                 // console.log(data);
                 this.cliente = user;
+                console.log(this.cliente);
                 this.logoEmpresa = this.cliente.logoEmpresa;
                 this.misOrdenesCompras();
-                console.log(this.cliente);
             },
             error => {
                 console.log(error);
+                this.toast.presentToast(error);
             });
     }
 
