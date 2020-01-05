@@ -1,0 +1,9 @@
+
+{
+  "/v3": {
+    "target": "https://tuventa.gclsistemas.com.ar/pedidosclientes",
+    "changeOrigin": true,
+    "secure": false,
+    "logLevel": "debug"
+  }
+}

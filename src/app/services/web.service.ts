@@ -15,8 +15,13 @@ export class WebService {
     /*protected urlWeb = 'http://192.168.0.110/tuventa/public';
     protected urlWebApi = 'http://192.168.0.110/tuventa/public/pedidosclientes';*/
     protected httpHeaders = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
+    // protected httpHeaders = new HttpHeaders();
 
     constructor(private http: HttpClient) {
+        // this.httpHeaders.append('Accept', 'application/json');
+        // // this.httpHeaders.append('Content-Type', 'application/json');
+        // this.httpHeaders.append('Content-Type', 'application/json; charset=utf-8');
+        // this.httpHeaders.append('Access-Control-Allow-Origin', '*');
     }
 
     get urlBase() {

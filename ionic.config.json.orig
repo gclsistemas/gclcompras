@@ -1,0 +1,7 @@
+{
+  "name": "gclcompras",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
