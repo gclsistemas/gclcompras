@@ -7,6 +7,7 @@
             id: number,
             fecha: datetime: 'yyyy-mm-dd h:m:s',
             factura: string,
+            iva: number,
             estado_id: number,
             estado: string,
             fechaEnvio: datetime: 'yyyy-mm-dd h:m:s',

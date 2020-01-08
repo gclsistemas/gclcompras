@@ -94,13 +94,25 @@ export class MyOrdersPage implements OnInit {
         this.router.navigate(['members', 'myorder', {logoEmpresa: this.logoEmpresa, orden: JSON.stringify(item)}]);
     }
 
-    importeTotal(compras: any[]) {
+    // 08.01.2020 GCL
+    // importeTotal(compras: any[]) {
+    //     let total = 0;
+    //     for (const dato of compras) {
+    //         total += (dato.cantidad * dato.precio);
+    //     }
+    //     return total;
+    // }
+    importeTotal(item: any) {
         let total = 0;
-        for (const dato of compras) {
-            total += (dato.cantidad * dato.precio);
+        for (const detalle of item.detalle_compra) {
+            total += (detalle.cantidad * detalle.precio);
+        }
+        if (item.iva > 0) {
+            total = total + (total * item.iva / 100);
         }
         return total;
     }
+    //
 
     ngOnInit() {
         console.log('MyOrders - ngOnInit');
