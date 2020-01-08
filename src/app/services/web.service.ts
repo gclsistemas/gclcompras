@@ -8,8 +8,8 @@ export class WebService {
 
     // protected urlWeb = 'http://tuventa.local';
     // protected urlWebApi = 'http://tuventa.local/pedidosclientes';
-    protected urlWeb = 'http://tuventa.gclsistemas.com.ar';
-    protected urlWebApi = 'http://tuventa.gclsistemas.com.ar/pedidosclientes';
+    protected urlWeb = 'https://tuventa.gclsistemas.com.ar';
+    protected urlWebApi = 'https://tuventa.gclsistemas.com.ar/pedidosclientes';
     // protected urlWeb = 'api/';
     // protected urlWebApi = 'api/pedidosclientes';
     /*protected urlWeb = 'http://192.168.0.110/tuventa/public';
@@ -19,7 +19,7 @@ export class WebService {
 
     constructor(private http: HttpClient) {
         // this.httpHeaders.append('Accept', 'application/json');
-        // // this.httpHeaders.append('Content-Type', 'application/json');
+        // this.httpHeaders.append('Content-Type', 'application/json');
         // this.httpHeaders.append('Content-Type', 'application/json; charset=utf-8');
         // this.httpHeaders.append('Access-Control-Allow-Origin', '*');
     }
